@@ -1,0 +1,7 @@
+---
+# make_chrony_a_ntp_server/handlers/main.yml
+
+- name: 'Restart chrony service'
+  service:
+    name: "{{ chrony_service }}"
+    state: "restarted"
