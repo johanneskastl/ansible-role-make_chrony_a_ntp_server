@@ -1,0 +1,6 @@
+#
+# allow connections
+#
+bindcmdaddress {{ ansible_default_ipv4.address|default(ansible_all_ipv4_addresses[0]) }}
+allow {{ (ansible_default_ipv4.network + '/' + ansible_default_ipv4.netmask) | ipaddr('network/prefix') }}
+
