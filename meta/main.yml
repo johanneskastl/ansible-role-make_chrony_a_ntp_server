@@ -1,0 +1,27 @@
+galaxy_info:
+  role_name: 'make_chrony_a_ntp_server'
+  author: 'Johannes Kastl'
+  description: 'Configure chrony to act as an NTP server'
+  company: 'B1 Systems GmbH'
+
+  license: 'BSD-3-Clause'
+
+  min_ansible_version: 2.4
+
+  platforms:
+  - name: Debian
+    versions:
+    - all
+  - name: opensuse
+    versions:
+    - all
+  - name: SLES
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+
+  galaxy_tags: []
+
+dependencies: []
