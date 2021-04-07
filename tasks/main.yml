@@ -1,0 +1,39 @@
+---
+# make_chrony_a_ntp_server/tasks/main.yml
+
+- name: "Create directory {{ path_to_chrony_d_directory }} on Debian"
+  file:
+    path: "{{ path_to_chrony_d_directory }}"
+    state: 'directory'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+  when: 'ansible_distribution == "Debian"'
+
+- name: 'Create configuration file accept_connections.conf for chrony'
+  template:
+    src: 'chrony.d_accept_connections.conf.j2'
+    dest: "{{ path_to_chrony_d_directory }}/accept_connections.conf"
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify:
+    - 'Restart chrony service'
+
+- name: 'Add include option to chrony.conf on Debian'
+  blockinfile:
+    path: "{{ path_to_chrony_conf }}"
+    block: |
+      include {{ path_to_chrony_d_directory }}/*.conf
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  when: 'ansible_distribution == "Debian"'
+  notify:
+    - 'Restart chrony service'
+
+- name: 'Enable and start chrony service'
+  service:
+    name: "{{ chrony_service }}"
+    state: 'started'
+    enabled: 'true'
