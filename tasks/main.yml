@@ -1,6 +1,12 @@
 ---
 # make_chrony_a_ntp_server/tasks/main.yml
 
+- name: 'Load variables'
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "vars_{{ ansible_distribution }}.yml"
+    - "vars_{{ ansible_os_family }}.yml"
+
 - name: "Create directory {{ path_to_chrony_d_directory }} on Debian"
   file:
     path: "{{ path_to_chrony_d_directory }}"
