@@ -1,5 +1,6 @@
 galaxy_info:
   role_name: 'make_chrony_a_ntp_server'
+  namespace: 'johanneskastl'
   author: 'Johannes Kastl'
   description: 'Configure chrony to act as an NTP server'
   company: 'B1 Systems GmbH'
