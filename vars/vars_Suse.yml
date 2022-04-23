@@ -5,4 +5,3 @@
 chrony_service: 'chronyd'
 path_to_chrony_conf: '/etc/chrony/chrony.conf'
 path_to_chrony_d_directory: '/etc/chrony.d'
-
