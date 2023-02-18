@@ -25,7 +25,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: 'johanneskastl.make_chrony_a_ntp_server' }
+         - role: 'johanneskastl.make_chrony_a_ntp_server'
 
 License
 -------
