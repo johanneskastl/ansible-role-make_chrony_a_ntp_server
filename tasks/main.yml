@@ -2,13 +2,13 @@
 # make_chrony_a_ntp_server/tasks/main.yml
 
 - name: 'Load variables'
-  include_vars: "{{ item }}"
+  ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - "vars_{{ ansible_distribution }}.yml"
     - "vars_{{ ansible_os_family }}.yml"
 
 - name: "Create directory {{ path_to_chrony_d_directory }} on Debian"
-  file:
+  ansible.builtin.file:
     path: "{{ path_to_chrony_d_directory }}"
     state: 'directory'
     owner: 'root'
@@ -17,7 +17,7 @@
   when: 'ansible_distribution == "Debian"'
 
 - name: 'Create configuration file accept_connections.conf for chrony'
-  template:
+  ansible.builtin.template:
     src: 'chrony.d_accept_connections.conf.j2'
     dest: "{{ path_to_chrony_d_directory }}/accept_connections.conf"
     owner: 'root'
@@ -27,7 +27,7 @@
     - 'Restart chrony service'
 
 - name: 'Add include option to chrony.conf on Debian'
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: "{{ path_to_chrony_conf }}"
     block: |
       include {{ path_to_chrony_d_directory }}/*.conf
@@ -39,7 +39,7 @@
     - 'Restart chrony service'
 
 - name: 'Enable and start chrony service'
-  service:
+  ansible.builtin.service:
     name: "{{ chrony_service }}"
     state: 'started'
     enabled: 'true'
