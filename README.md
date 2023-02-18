@@ -1,3 +1,5 @@
+![Ansible Lint](https://github.com/johanneskastl/ansible-role-make_chrony_a_ntp_server/workflows/Ansible%20Lint/badge.svg)
+
 make_chrony_a_ntp_server
 =========
 
