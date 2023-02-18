@@ -7,7 +7,7 @@
     - "vars_{{ ansible_distribution }}.yml"
     - "vars_{{ ansible_os_family }}.yml"
 
-- name: "Create directory {{ path_to_chrony_d_directory }} on Debian"
+- name: "Create chrony.d directory on Debian"
   ansible.builtin.file:
     path: "{{ path_to_chrony_d_directory }}"
     state: 'directory'
